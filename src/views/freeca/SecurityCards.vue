@@ -5,8 +5,8 @@
     <van-tabs :line-width="20" v-model="active" @change="onClickTab">
       <van-tab title="可使用">
       </van-tab>
-      <van-tab title="不可用">
-      </van-tab>
+      <!-- <van-tab title="不可用">
+      </van-tab> -->
       <van-tab title="卡合并">
       </van-tab>
     </van-tabs>
@@ -14,7 +14,7 @@
     <div>
       <p class="filter" v-if="active == 0">
         <span @click="cardsort(0, $event)" class="select">可使用</span>
-        <span @click="cardsort(1, $event)" class="select">即将过期</span>
+        <!-- <span @click="cardsort(1, $event)" class="select">即将过期</span> -->
         <span @click="sortA(2, $event)" class="select sort" style="position: relative;padding-right: 20px;">
           点数
 
@@ -117,7 +117,8 @@
             <div class="center">
               <div class="title titleBox">
                 <div>{{ item.cardName }}</div>
-                <div class="seeBox" :style="'border:1px solid ' + item.borderColor + ';color:' + item.borderTextColor + ''"
+                <div class="seeBox"
+                  :style="'border:1px solid ' + item.borderColor + ';color:' + item.borderTextColor + ''"
                   v-if="item.pid == 10 || item.pid == 11">
                   <div style="font-size: 12px;">查看权益</div>
                   <div class="iconBack" :style="'background-color:' + item.borderTextColor + ''">
@@ -139,7 +140,8 @@
     </div>
     <!--    合并按钮-->
     <div class="merge" :class="{ merge2: change }" v-if="list.length > 0 && active == 2">
-      <div class="mergeBtn" :class="{ mergeBtn2: list.filter(item => item.isCheckout == true).length > 1 }" @click="mergecards">
+      <div class="mergeBtn" :class="{ mergeBtn2: list.filter(item => item.isCheckout == true).length > 1 }"
+        @click="mergecards">
         合并
         <span v-if="list.filter(item => item.isCheckout == true).length > 0">({{
           list.filter(item => item.isCheckout == true).length
@@ -166,6 +168,7 @@ export default {
 
   data() {
     return {
+      isFirstEnter: true,
       active: 0,
       token: null,
       endtime: "2026-12-13",
@@ -196,10 +199,22 @@ export default {
       ],
     };
   },
-
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (vm.isFirstEnter) {
+        vm.isFirstEnter = false
+        return
+      }
+      vm.loadingflag = true
+      vm.list = []
+      vm.list2 = []
+      vm.pidsList = []
+      vm.npid = ''
+      vm.getCards()
+    })
+  },
   mounted() {
-    // document.id=html
-    // document.top = 0
+
     this.token = localStorage.getItem("token")
     this.change = this.$route.query.change || sessionStorage.getItem("change")
     console.log(sessionStorage.getItem("change"))
