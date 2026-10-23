@@ -5,7 +5,7 @@
     <van-tabs :line-width="20" v-model="active" @change="onClickTab">
       <van-tab title="可使用">
       </van-tab>
-      <van-tab title="">
+      <van-tab title="" style="width: 1px;">
       </van-tab>
       <van-tab title="卡合并">
       </van-tab>
@@ -1109,5 +1109,20 @@ export default {
     color: #ffffff;
 
   }
+}
+
+/* 中间那个 tab 是 .van-tabs__nav 下的第 3 个元素（第 1 个是下划线，第 2 个是首个 tab，第 3 个就是它） */
+.securitycards ::v-deep .van-tabs__nav .van-tab:nth-child(3) {
+  flex: 0 0 1px !important;
+  width: 1px !important;
+  min-width: 1px !important;
+  max-width: 1px !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* 隐藏中间那个 tab 里面的文字/空格 */
+.securitycards ::v-deep .van-tabs__nav .van-tab:nth-child(3) .van-ellipsis {
+  display: none;
 }
 </style>
