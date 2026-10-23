@@ -5,8 +5,8 @@
     <van-tabs :line-width="20" v-model="active" @change="onClickTab">
       <van-tab title="可使用">
       </van-tab>
-      <!-- <van-tab title="不可用">
-      </van-tab> -->
+      <van-tab title="">
+      </van-tab>
       <van-tab title="卡合并">
       </van-tab>
     </van-tabs>
@@ -571,20 +571,21 @@ export default {
       this.$router.push({ path: "/bindingCard" })
     },
     cardsort(num) {
-      document.getElementsByClassName("sort")[0].style.background = "#f0f0f0"
-      document.getElementsByClassName("sort")[0].style.color = "#000"
-      // var number=[0,1,2]
-      var s = document.getElementsByClassName("select")[num]
-      // s.style.background="#f0f0f0"
-      s.style.background = "#fff1f1"
-      s.style.color = "red"
-      for (var i = 0; i < 2; i++) {
-        if (i != num) {
-          var s = document.getElementsByClassName("select")[i]
-          s.style.background = "#f0f0f0"
-          s.style.color = "#000"
-        }
+      // 1. 先把“点数”按钮的选中状态清除
+      let sortBtn = document.getElementsByClassName("sort")[0]
+      if (sortBtn) {
+        sortBtn.style.background = "#f0f0f0"
+        sortBtn.style.color = "#000"
       }
+      
+      // 2. 高亮当前点击的“可使用”按钮
+      let currentBtn = document.getElementsByClassName("select")[num]
+      if (currentBtn) {
+        currentBtn.style.background = "#fff1f1"
+        currentBtn.style.color = "red"
+      }
+      
+      // 3. 拉取默认排序的数据（flag=1）
       this.getCards(num + 1)
     },
     go(pid) {
@@ -601,17 +602,17 @@ export default {
     },
     // 排序
     sortA() {
-      // console.log(this.sort);
-      var s = document.getElementsByClassName("select")[2]
       this.sort = !this.sort
-      if (!this.sort) {
+      // 安全修改样式，不再使用 document 获取下标，直接获取唯一的 .sort 元素
+      let s = document.getElementsByClassName("sort")[0]
+      if (s) {
         s.style.background = "#fff1f1"
         s.style.color = "red"
+      }
+      
+      if (!this.sort) {
         this.getCards(3)
       } else {
-
-        s.style.background = "#fff1f1"
-        s.style.color = "red"
         this.getCards(4)
       }
     },
