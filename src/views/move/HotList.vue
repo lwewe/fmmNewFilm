@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="filmright">
-          <div class="pap"  @click.stop="buyticket(item)">购 票</div>
+          <!-- <div class="pap"  @click.stop="buyticket(item)">购 票</div> -->
         </div>
       </div>
     </div>

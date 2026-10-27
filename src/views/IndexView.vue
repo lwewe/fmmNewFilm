@@ -104,7 +104,7 @@
                     <img class="logonum" :src="require('../assets/number/'+(index+1)+'.png')" alt="">
                   </div>
                   <p class="hotname elips1" style="">{{ item.name }}</p>
-                  <button @click="buyticket(item)">购&nbsp;票</button>
+                  <!-- <button @click="buyticket(item)">购&nbsp;票</button> -->
                 </div>
               </div>
             </div>
@@ -152,10 +152,10 @@
                 item.wish > 1000 ? (item.wish / 10000).toFixed(1) : item.wish
               }}</span>{{ item.wish > 1000 ? "万" : '' }}人想看
           </div>
-          <div class="pap" v-if="item.isPreShow||active==0" :class="{pap2:active==1}" @click.stop="buyticket(item)">{{
+          <!-- <div class="pap" v-if="item.isPreShow||active==0" :class="{pap2:active==1}" @click.stop="buyticket(item)">{{
               active == 0 ? "购 票" : "预 售"
             }}
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
