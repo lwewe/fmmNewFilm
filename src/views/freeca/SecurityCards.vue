@@ -394,6 +394,27 @@ export default {
             btnGradient = "#F37682,#F36374"
             btnColor = "#FDF4F5"
             iconColor = "#F23150"
+          } else if (item.pid == 15) {
+            backImg = require("../../assets/newico/1.png")
+            backImg2 = require("../../assets/newico/1.png")
+            cardName = "超级A卡"
+            colorText2 = "#8F8675"
+            gradient = "#E9D8C0,#D8B184"
+            btnGradient = "#F4E6C6,#DABC8F"
+            btnColor = "#845E34"
+            iconColor = "#EDDCBD"
+            borderColor = "#F4CEB1"
+            borderTextColor = "#ED373B"
+          }
+          else if (item.pid == 16) {
+            backImg = require("../../assets/newico/2.png")
+            backImg2 = require("../../assets/newico/2.png")
+            cardName = "蛋糕A卡"
+            colorText2 = "#F57488"
+            gradient = "#F6747F,#EB5D6F"
+            btnGradient = "#F37682,#F36374"
+            btnColor = "#FDF4F5"
+            iconColor = "#F23150"
           } else if (item.pid == 3) {
             backImg = require("../../assets/newico/3.png")
             backImg2 = require("../../assets/newico/3.png")
@@ -577,14 +598,14 @@ export default {
         sortBtn.style.background = "#f0f0f0"
         sortBtn.style.color = "#000"
       }
-      
+
       // 2. 高亮当前点击的“可使用”按钮
       let currentBtn = document.getElementsByClassName("select")[num]
       if (currentBtn) {
         currentBtn.style.background = "#fff1f1"
         currentBtn.style.color = "red"
       }
-      
+
       // 3. 拉取默认排序的数据（flag=1）
       this.getCards(num + 1)
     },
@@ -609,7 +630,7 @@ export default {
         s.style.background = "#fff1f1"
         s.style.color = "red"
       }
-      
+
       if (!this.sort) {
         this.getCards(3)
       } else {
