@@ -4,9 +4,9 @@
     <ReturnBack :rcolor="'#fff'" :bcolor="'#00000087'"></ReturnBack>
     <div class="wrap">
       <input v-model="phone" disabled  class="phone public" placeholder="请输入手机号" type="text">
-      <input v-model="phonecode" type="number" class="code public" placeholder="请输入验证码" >
+      <!-- <input v-model="phonecode" type="number" class="code public" placeholder="请输入验证码" >
       <input v-if="show" type="button" class="send" :class="{send1:change==3,send2:per==1,}" @click="getcodetime()" name="" id="" value="获取验证码">
-      <input v-if="!show" type="button" class="send" :class="{send1:change==3,send2:per==1,}" name="" id="" :value="count+'秒后重新获取'">
+      <input v-if="!show" type="button" class="send" :class="{send1:change==3,send2:per==1,}" name="" id="" :value="count+'秒后重新获取'"> -->
     </div>
     <div class="wrap passwordBox">
       <input v-model="password" class="phone password public" placeholder="请输入6位支付密码" :type="type" maxlength="6">
@@ -99,10 +99,10 @@ export default {
     },
     // 登录
     login() {
-      if (this.phonecode == "") {
-        this.$toast("请输入验证码")
-        return
-      }
+      // if (this.phonecode == "") {
+      //   this.$toast("请输入验证码")
+      //   return
+      // }
       const regex = /^\d+$/;
       if(!regex.test(this.password)){
         this.$toast("请输入6位数字密码")
@@ -123,7 +123,7 @@ export default {
       if (this.checked == true) {
         changePassword({
           token: this.token,
-          code: this.phonecode,
+          // code: this.phonecode,
           password: this.password
         }).then(res => {
           if (res.code == 200) {
