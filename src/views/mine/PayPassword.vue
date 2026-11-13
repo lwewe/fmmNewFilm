@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="info" :class="{info2:per==1}">修改支付密码请验证已绑定手机信息</div>
+    <!-- <div class="info" :class="{info2:per==1}">修改支付密码请验证已绑定手机信息</div> -->
     <button class="loginbtn" :class="{loginbtn2:change==3,loginbtn3:per==1,}" @click="login()">确定</button>
   </div>
 </template>
